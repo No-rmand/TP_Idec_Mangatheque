@@ -1,0 +1,46 @@
+{
+    "type" : "object",
+    "required": ["autheur",
+        "nom",
+        "serie",
+        "longueur",
+        "nbTome",
+        "genre",
+        "titre",
+        "tome",
+        "possede",
+        "langue",
+        "numero",
+        "dateParution"
+    ],
+    "properties": {
+        "nom" : {
+            "type" : "string",
+            "minLength" : 1
+        },
+        "longueur" : {
+            "enum" : ["Serie longue", "Serie courte", "One shot"]
+        },
+        "nbTome" : {
+            "type" : "integer"
+        },
+            "genre" : {
+                "enum" : ["Shonen", "Shojo", "Seinen", "Josei", "Kodomo"]
+        },
+        "titre" : {
+            "type" : "string"
+        },
+        "possede" : {
+            "enum": ["Digital", "Physique"]
+        },
+        "langue" : {
+            "enum" : ["Anglais", "Francais", "Portugais"]
+        },
+        "numero" : {
+            "type" : "integer"
+        },
+        "dateParution" : {
+            "type" : "string"
+        }           
+    }
+}

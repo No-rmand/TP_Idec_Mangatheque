@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="mangatheque">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="auteur" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="series">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="serie" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="tome" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="numero" type="xs:integer"/>
+                                                                <xs:element name="dateParution" type="xs:string"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="possede" use="required">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="Digital"/>
+                                                                        <xs:enumeration value="Physique"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="langue" use="required">
+                                                                <xs:simpleType>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="Francais"/>
+                                                                        <xs:enumeration value="Anglais"/>
+                                                                        <xs:enumeration value="Portugais"/>
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="longueur" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="Serie longue"/>
+                                                            <xs:enumeration value="Serie courte"/>
+                                                            <xs:enumeration value="One shot"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="nbTome" type="xs:integer" use="required"/>
+                                                <xs:attribute name="genre" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="Shonen"/>
+                                                            <xs:enumeration value="Shojo"/>
+                                                            <xs:enumeration value="Seinen"/>
+                                                            <xs:enumeration value="Josei"/>
+                                                            <xs:enumeration value="Kodomo"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="titre" type="xs:string" use="required"/> 
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>                                                                                                           
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="nom" type="xs:string" use="required"/>
+                    </xs:complexType>   
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

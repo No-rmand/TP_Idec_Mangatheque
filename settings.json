@@ -1,0 +1,10 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch" : [
+                "/MaMangatheque.json"
+            ],
+            "url": "./MaMangatheque.schema.json"
+        }
+    ]
+}

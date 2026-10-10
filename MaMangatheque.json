@@ -1,0 +1,35 @@
+{
+    "auteur" : [
+        {
+            "nom" : "Takehiko Inoue",
+            "serie" :[
+                {
+                    "longueur" : "Serie longue",
+                    "nbTome" : 31,
+                    "genre" : "Seinen",
+                    "titre" : "Vagabond",
+                    "tome" : [
+                        {
+                            "possede" : "Digital",
+                            "langue" : "Anglais",
+                            "numero" : 1,
+                            "dateParution" : "24.03.2001"
+                        },
+                        {
+                            "possede" : "Digital",
+                            "langue" : "Anglais",
+                            "numero" : 2,
+                            "dateParution" : "29.05.2001"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nom" : "Akira Toriyama",
+            "serie" : [
+
+            ]
+        }
+    ] 
+}

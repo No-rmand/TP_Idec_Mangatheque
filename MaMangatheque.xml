@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                       
+ _    _                         _   _      __                   
+|  \/  |                       | | | |     \_\                  
+| \  / | __ _ _ __   __ _  __ _| |_| |__   ___  __ _ _   _  ___ 
+| |\/| |/ _` | '_ \ / _` |/ _` | __| '_ \ / _ \/ _` | | | |/ _ \
+| |  | | (_| | | | | (_| | (_| | |_| | | |  __/ (_| | |_| |  __/
+|_|  |_|\__,_|_| |_|\__, |\__,_|\__|_| |_|\___|\__, |\__,_|\___|
+                     __/ |                        | |           
+                    |___/                         |_|           
+-->
+<mangatheque xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="MaMangatheque.xsd">
+    <auteur nom="Takehiko Inoue">
+        <series>
+            <serie longueur="Serie longue" nbTome="31" genre="Seinen" titre="Vagabond">
+                <tome possede="Digital" langue="Anglais">
+                    <numero>1</numero>
+                    <dateParution>24.03.2001</dateParution>
+                </tome>
+                <tome possede="Digital" langue="Anglais">
+                    <numero>2</numero>
+                    <dateParution>29.05.2001</dateParution>
+                </tome>
+            </serie>
+            <serie longueur="Serie longue" nbTome="37" genre="Shonen" titre="Slam Dunk">
+                <tome possede="Digital" langue="Anglais">
+                    <numero>1</numero>
+                    <dateParution>01.03.1999</dateParution>
+                </tome>
+                <tome possede="Digital" langue="Anglais">
+                    <numero>2</numero>
+                    <dateParution>01.05.1999</dateParution>
+                </tome>
+            </serie>
+        </series>
+    </auteur>
+    <auteur nom="Akira Toriyama">
+        <series>
+            <serie longueur="Serie longue" nbTome="42" genre="Shonen" titre="Dragon Ball">
+                <tome possede="Physique" langue="Francais">
+                    <numero>1</numero>
+                    <dateParution>24.05.1993</dateParution>
+                </tome>
+                <tome possede="Physique" langue="Francais">
+                    <numero>2</numero>
+                    <dateParution>17.06.1993</dateParution>
+                </tome>
+                <tome possede="Physique" langue="Francais">
+                    <numero>3</numero>
+                    <dateParution>22.09.1993</dateParution>
+                </tome>
+            </serie>
+        </series>
+    </auteur>
+    <auteur nom="Takeshi OBATA">
+        <series>
+            <serie longueur="Serie longue" nbTome="20" genre="Shonen" titre="Bakuman">
+                <tome possede="Digital" langue="Francais">
+                    <numero>1</numero>
+                    <dateParution>02.07.2010</dateParution>
+                </tome>
+                <tome possede="Digital" langue="Francais">
+                    <numero>2</numero>
+                    <dateParution>02.07.2010</dateParution>
+                </tome>
+                <tome possede="Digital" langue="Francais">
+                    <numero>3</numero>
+                    <dateParution>17.09.2010</dateParution>
+                </tome>
+
+            </serie>
+        </series>
+    </auteur>
+</mangatheque>
