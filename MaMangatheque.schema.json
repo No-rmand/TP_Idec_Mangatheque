@@ -1,46 +1,69 @@
 {
-    "type" : "object",
-    "required": ["autheur",
-        "nom",
-        "serie",
-        "longueur",
-        "nbTome",
-        "genre",
-        "titre",
-        "tome",
-        "possede",
-        "langue",
-        "numero",
-        "dateParution"
-    ],
+    "type": "object",
+    "required": ["auteur"],
+    
     "properties": {
-        "nom" : {
-            "type" : "string",
-            "minLength" : 1
-        },
-        "longueur" : {
-            "enum" : ["Serie longue", "Serie courte", "One shot"]
-        },
-        "nbTome" : {
-            "type" : "integer"
-        },
-            "genre" : {
-                "enum" : ["Shonen", "Shojo", "Seinen", "Josei", "Kodomo"]
-        },
-        "titre" : {
-            "type" : "string"
-        },
-        "possede" : {
-            "enum": ["Digital", "Physique"]
-        },
-        "langue" : {
-            "enum" : ["Anglais", "Francais", "Portugais"]
-        },
-        "numero" : {
-            "type" : "integer"
-        },
-        "dateParution" : {
-            "type" : "string"
-        }           
+        "auteur": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "required": ["nom", "serie"],
+                
+                "properties": {
+                    "nom": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "serie": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                            "type": "object",
+                            "required": ["longueur", "nbTome", "genre", "titre", "tome"],
+                            
+                            "properties": {
+                                "longueur": {
+                                    "enum": ["Serie longue", "Serie courte", "One shot"]
+                                },
+                                "nbTome": {
+                                    "type": "integer"
+                                },
+                                "genre": {
+                                    "enum": ["Shonen", "Shojo", "Seinen", "Josei", "Kodomo"]
+                                },
+                                "titre": {
+                                    "type": "string",
+                                    "minLength": 1
+                                },
+                                "tome": {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "items": {
+                                        "type": "object",
+                                        "required": ["possede", "langue", "numero", "dateParution"],
+                                        
+                                        "properties": {
+                                            "possede": {
+                                                "enum": ["Digital", "Physique"]
+                                            },
+                                            "langue": {
+                                                "enum": ["Anglais", "Francais", "Portugais"]
+                                            },
+                                            "numero": {
+                                                "type": "integer"
+                                            },
+                                            "dateParution": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
