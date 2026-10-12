@@ -1,0 +1,15 @@
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\bin\Debug\net10.0\MangathequeConsole.exe
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\bin\Debug\net10.0\MangathequeConsole.deps.json
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\bin\Debug\net10.0\MangathequeConsole.runtimeconfig.json
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\bin\Debug\net10.0\MangathequeConsole.dll
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\bin\Debug\net10.0\MangathequeConsole.pdb
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\obj\Debug\net10.0\MangathequeConsole.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\obj\Debug\net10.0\MangathequeConsole.AssemblyInfoInputs.cache
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\obj\Debug\net10.0\MangathequeConsole.AssemblyInfo.cs
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\obj\Debug\net10.0\MangathequeConsole.csproj.CoreCompileInputs.cache
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\obj\Debug\net10.0\MangathequeConsole.sourcelink.json
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\obj\Debug\net10.0\MangathequeConsole.dll
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\obj\Debug\net10.0\refint\MangathequeConsole.dll
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\obj\Debug\net10.0\MangathequeConsole.pdb
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\obj\Debug\net10.0\MangathequeConsole.genruntimeconfig.cache
+C:\Users\norma\Documents\GitHub\TP_Idec_Mangatheque\MangathequeConsole\obj\Debug\net10.0\ref\MangathequeConsole.dll
