@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MangathequeConsole")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+452b07369ac2e239c9d85c15643e775409bcb44c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ba7c4fb8535831363ec1f5d7aefeec1bb74782c")]
 [assembly: System.Reflection.AssemblyProductAttribute("MangathequeConsole")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MangathequeConsole")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
