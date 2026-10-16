@@ -67,7 +67,90 @@ foreach (JsonNode? auteurJson in auteursJson)
 
     // Create en XML - // Create en Json
 
-    // Update en XML - // Update en Json
+foreach (XElement auteurXml in racineXml.Elements("auteur"))
+{
+    foreach (XElement serieXml in auteurXml.Element("series").Elements("serie"))
+    {
+        string titre = serieXml.Attribute("titre")?.Value ?? "(absent)";
+        if (titre == "Bakuman")
+        {
+            serieXml.Add
+            (
+                    new XElement ("tome",
+                    new XAttribute("possede", "Physique"),
+                    new XAttribute("langue", "Francais"),
+                    new XElement ("numero", 4),
+                    new XElement ("dateParution", "05.11.2010"))
+            );
+        }
+    }
+}
+
+foreach (JsonNode? auteurJson in auteursJson)
+{
+    JsonArray seriesJson = auteurJson["serie"]?.AsArray();
+    foreach (JsonNode? serieJson in seriesJson)
+    {
+        string titre = serieJson?["titre"]?.GetValue<string>() ?? "(absent)";
+        if (titre == "Bakuman")
+        {
+            JsonArray tomesJson = serieJson["tome"]?.AsArray();
+            tomesJson.Add( new JsonObject
+            {
+                ["possede"] = "Physique",
+                ["langue"] = "Francais",
+                ["numero"] = 4,
+                ["dateParution"] = "05.11.2010"
+            });
+        }
+    }
+}
+
+
+
+
+
+    // Update en XML  - // Update en Json
+    
+foreach (XElement auteurXml in racineXml.Elements("auteur"))
+{
+    foreach (XElement serieXml in auteurXml.Element("series").Elements("serie"))
+    {
+        string titre = serieXml.Attribute("titre")?.Value ?? "(absent)";
+        if (titre == "Bakuman")
+        {
+            foreach (XElement tomeXml in serieXml.Elements("tome"))
+            {
+                int numero = int.Parse(tomeXml.Element("numero").Value);
+                if (numero == 4)
+                {
+                    tomeXml.SetAttributeValue("langue", "Allemand");
+                }
+            }
+        }
+    }
+}
+
+
+foreach (JsonNode? auteurJson in auteursJson)
+{
+    JsonArray seriesJson = auteurJson["serie"]?.AsArray();
+    foreach (JsonNode? serieJson in seriesJson)
+    {
+        string titre = serieJson?["titre"]?.GetValue<string>() ?? "(absent)";
+        if (titre == "Bakuman")
+        {
+            foreach (JsonNode? tomeJson in serieJson["tome"]?.AsArray())
+            {
+                int numero = tomeJson["numero"]?.GetValue<int>() ?? 0;
+                if (numero == 4)
+                {
+                    tomeJson["langue"] = "Allemand";
+                }
+            }
+        }
+    }
+}
 
     // Delete en XML - // Delete en Json
 
@@ -77,7 +160,6 @@ foreach (JsonNode? auteurJson in auteursJson)
 //On commande un livre manquant sur Facebook et on l'entre dans la base
 //On reçoit le livre en on update la langue car on s'est trompé
 //C'est de l'allemand et je n'ai pas cette option donc erreur
-//On le met en Anglais en attendant
 //On le renvoie au vendeur donc on le supprime des bases
 
 
