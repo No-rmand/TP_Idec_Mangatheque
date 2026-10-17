@@ -8,6 +8,70 @@ using System.Reflection.Metadata;
 using System.Runtime.ConstrainedExecution;
 using System.Numerics;
 
+
+MangathequeXml xml = new MangathequeXml("../MaMangatheque.xml");
+MangathequeJson json = new MangathequeJson("../MaMangatheque.json");
+System.Console.WriteLine(" _    _                         _   _      __\n|  \\/  |                       | | | |     \\_\\\n| \\  / | __ _ _ __   __ _  __ _| |_| |__   ___  __ _ _   _  ___\n| |\\/| |/ _` | '_ \\ / _` |/ _` | __| '_ \\ / _ \\/ _` | | | |/ _ \\\n| |  | | (_| | | | | (_| | (_| | |_| | | |  __/ (_| | |_| |  __/\n|_|  |_|\\__,_|_| |_|\\__, |\\__,_|\\__|_| |_|\\___|\\__, |\\__,_|\\___|\n                     __/ |                        | |\n                    |___/                         |_|");
+System.Console.WriteLine("\n \nBienvenue! \n\nChoissisez une option:");
+
+string? input = "";
+while (input != "0")
+{
+    System.Console.WriteLine("\n\n1. Afficher la mangathèque \n2. Ajouter un manga dans une série existante \n3. Mettre à jour un manga \n4. Supprimer un manga \n\n0. Quitter");
+    input = System.Console.ReadLine();
+    switch (input)
+    {
+        case "1":
+            Console.Clear();
+            xml.ReadAll();
+            break;
+        case "2":
+            Console.Clear();
+            string? nomSerie = "";
+            int? possede = 0;
+            int? langue = 0;
+            int? tome = 0;
+            string? dateParution = "";
+            System.Console.WriteLine("Entrez le nom de la série");
+            nomSerie = System.Console.ReadLine();
+            System.Console.WriteLine("1. Physique ?\n2. Digital ?");
+            possede = int.Parse(System.Console.ReadLine);
+            System.Console.WriteLine("1. Français ? \n 2. Anglais ?");
+            langue = int.Parse(System.Console.ReadLine);
+            System.Console.WriteLine("Quel est le numéro du tome ?");
+            tome = int.Parse(System.Console.ReadLine);
+            System.Console.WriteLine("Quel est sa date de parution ?\nFormat jj.mm.aaaa");
+            dateParution = System.Console.ReadLine;
+            xml.AddManga(nomSerie, possede, langue, tome, dateParution);
+            json.AddManga();
+            break;
+        case "3":
+            Console.Clear();
+            xml.UpdateManga();
+            json.UpdateManga();
+            break;
+        case "4":
+            Console.Clear();
+            xml.DeleteManga();
+            json.DeleteManga();
+            break;
+        default :
+            System.Console.WriteLine("Choix invalide.");
+            break;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 // Charger les documents
 XDocument mangathequeXml = XDocument.Load("../MaMangatheque.xml"); //xml
 string mangathequeJsonFile = File.ReadAllText("../MaMangatheque.json"); //json
@@ -202,3 +266,4 @@ foreach (JsonNode? auteurJson in auteursJson)
 
 
 
+*/
