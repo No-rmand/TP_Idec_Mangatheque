@@ -153,6 +153,44 @@ foreach (JsonNode? auteurJson in auteursJson)
 }
 
     // Delete en XML - // Delete en Json
+foreach (XElement auteurXml in racineXml.Elements("auteur"))
+{
+    foreach (XElement tomeXml in auteurXml.Element("series").Elements("serie").Elements("tome"))
+    {
+        int numero = int.Parse(tomeXml.Element("numero")?.Value);
+        if (numero == 4)
+        {
+            tomeXml.Remove
+            ();
+            break;
+        }
+    }
+}
+
+
+foreach (JsonNode? auteurJson in auteursJson)
+{
+    JsonArray seriesJson = auteurJson["serie"]?.AsArray();
+    foreach (JsonNode? serieJson in seriesJson)
+    {
+        string titre = serieJson?["titre"]?.GetValue<string>() ?? "(absent)";
+
+        if (titre == "Bakuman")
+        {
+            JsonArray tomesJson = serieJson["tome"]?.AsArray();
+            foreach (JsonNode? tomeJson in tomesJson)
+            {
+                int numero = tomeJson["numero"]?.GetValue<int>() ?? 0;
+                if (numero == 4)
+                {
+                    tomesJson.Remove(tomeJson);
+                    break;
+                }
+            }
+        }
+    }
+}
+
 
 
 //Petite histoire
