@@ -31,19 +31,83 @@ public class MangathequeXml
         return("");
     }
 
-    public bool AddManga(string nomSerie, int possede, int langue, int tome, string dateParution)
+    public bool AddManga(string nomSerie, string possede, string langue, int tome, string dateParution)
     {
-        
-        return(true);
+        bool found = false;
+        XElement racineXml = _documentXml.Root
+            ?? throw new InvalidDataException("Racine XML absente.");
+        foreach (XElement auteurXml in racineXml.Elements("auteur"))
+        {
+            foreach (XElement serieXml in auteurXml.Element("series").Elements("serie"))
+            {
+                string titre = serieXml.Attribute("titre")?.Value ?? "(absent)";
+                if (titre == nomSerie)
+                {
+                    serieXml.Add
+                    (
+                            new XElement ("tome",
+                            new XAttribute("possede", possede),
+                            new XAttribute("langue", langue),
+                            new XElement ("numero", tome),
+                            new XElement ("dateParution", dateParution))
+                            
+                    );
+                    found = true;
+                }
+            }
+        }
+        return(found);
     }
 
-    public bool UpdateManga()
+    public bool UpdateManga(string nomSerie, int tome, string langue)
     {
-        return(true);
+        bool found = false;
+        XElement racineXml = _documentXml.Root
+            ?? throw new InvalidDataException("Racine XML absente.");
+        foreach (XElement auteurXml in racineXml.Elements("auteur"))
+        {
+            foreach (XElement serieXml in auteurXml.Element("series").Elements("serie"))
+            {
+                string titre = serieXml.Attribute("titre")?.Value ?? "(absent)";
+                if (titre == nomSerie)
+                {
+                    foreach (XElement tomeXml in serieXml.Elements("tome"))
+                    {
+                        if (int.Parse(tomeXml.Element("numero").Value) == tome)
+                        {
+                            tomeXml.SetAttributeValue("langue", langue);
+                            found = true;
+                        }
+                    }
+                }
+            }
+        }
+        return(found);
     }
 
-    public bool DeleteManga()
+    public bool DeleteManga(string nomSerie, int tome)
     {
-        return(true);
+        bool found = false;
+        XElement racineXml = _documentXml.Root
+            ?? throw new InvalidDataException("Racine XML absente.");
+        foreach (XElement auteurXml in racineXml.Elements("auteur"))
+        {
+            foreach (XElement serieXml in auteurXml.Element("series").Elements("serie"))
+            {
+                string titre = serieXml.Attribute("titre")?.Value ?? "(absent)";
+                if (titre == nomSerie)
+                {
+                    foreach (XElement tomeXml in serieXml.Elements("tome"))
+                    {
+                        if (int.Parse(tomeXml.Element("numero").Value) == tome)
+                        {
+                            tomeXml.Remove();
+                            found = true;
+                        }
+                    }
+                }
+            }
+        }
+        return(found);
     }
 }

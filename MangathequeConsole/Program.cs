@@ -28,31 +28,46 @@ while (input != "0")
         case "2":
             Console.Clear();
             string? nomSerie = "";
-            int? possede = 0;
-            int? langue = 0;
-            int? tome = 0;
+            string? possede = "";
+            string? langue = "";
+            int tome = 0;
             string? dateParution = "";
+            int choix = 0;
             System.Console.WriteLine("Entrez le nom de la série");
             nomSerie = System.Console.ReadLine();
             System.Console.WriteLine("1. Physique ?\n2. Digital ?");
-            possede = int.Parse(System.Console.ReadLine);
+            choix = int.Parse(System.Console.ReadLine());
+            if (choix == 1) {possede = "Physique";} else {possede = "Digital";}
+            choix = 0;
             System.Console.WriteLine("1. Français ? \n 2. Anglais ?");
-            langue = int.Parse(System.Console.ReadLine);
+            choix = int.Parse(System.Console.ReadLine());
+            if (choix == 1) {langue = "Francais";} else {langue = "Anglais";}
+            choix = 0;
             System.Console.WriteLine("Quel est le numéro du tome ?");
-            tome = int.Parse(System.Console.ReadLine);
+            tome = int.Parse(System.Console.ReadLine());
             System.Console.WriteLine("Quel est sa date de parution ?\nFormat jj.mm.aaaa");
-            dateParution = System.Console.ReadLine;
+            dateParution = System.Console.ReadLine();
             xml.AddManga(nomSerie, possede, langue, tome, dateParution);
             json.AddManga();
             break;
         case "3":
             Console.Clear();
-            xml.UpdateManga();
+            System.Console.WriteLine("Entrez le nom de la série");
+            nomSerie = System.Console.ReadLine();
+            System.Console.WriteLine("Quel est le numéro du tome");
+            tome = int.Parse(System.Console.ReadLine());
+            System.Console.WriteLine("Modifier la langue");
+            langue = System.Console.ReadLine();         
+            xml.UpdateManga(nomSerie, tome, langue);
             json.UpdateManga();
             break;
         case "4":
             Console.Clear();
-            xml.DeleteManga();
+            System.Console.WriteLine("Entrez le nom de la série");
+            nomSerie = System.Console.ReadLine();
+            System.Console.WriteLine("Quel est le numéro du tome");
+            tome = int.Parse(System.Console.ReadLine());
+            xml.DeleteManga(nomSerie, tome);
             json.DeleteManga();
             break;
         default :
@@ -70,7 +85,7 @@ while (input != "0")
 
 
 
-
+/*
 
 // Charger les documents
 XDocument mangathequeXml = XDocument.Load("../MaMangatheque.xml"); //xml
