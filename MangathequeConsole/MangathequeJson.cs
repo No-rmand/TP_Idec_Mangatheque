@@ -13,22 +13,94 @@ public class MangathequeJson
 
     public string ReadAll()
     {
-
+        //pas nécessaire car déjà bien traîtée en xml
         return("");
     }
 
-    public bool AddManga()
+    public bool AddManga(string nomSerie, string possede, string langue, int tome, string dateParution)
     {
-        return(true);
+        bool found = false;
+        JsonArray auteursJson = _documentJson["auteur"]?.AsArray()
+            ?? throw new InvalidDataException("Tableau d'auteurs absent.");
+        foreach (JsonNode? auteurJson in auteursJson)
+        {
+            JsonArray seriesJson = auteurJson["serie"]?.AsArray();
+            foreach (JsonNode? serieJson in seriesJson)
+            {
+                string titre = serieJson?["titre"]?.GetValue<string>() ?? "(absent)";
+                if (titre == nomSerie)
+                {
+                    JsonArray tomesJson = serieJson["tome"]?.AsArray();
+                    tomesJson.Add( new JsonObject
+                    {
+                        ["possede"] = possede,
+                        ["langue"] = langue,
+                        ["numero"] = tome,
+                        ["dateParution"] = dateParution
+                    });
+                    found = true;
+                }
+            }
+        }
+        return(found);
     }
 
-    public bool UpdateManga()
+    public bool UpdateManga(string nomSerie, int tome, string langue)
     {
-        return(true);
+        bool found = false;
+        JsonArray auteursJson = _documentJson["auteur"]?.AsArray()
+            ?? throw new InvalidDataException("Tableau d'auteurs absent.");
+        foreach (JsonNode? auteurJson in auteursJson)
+        {
+            JsonArray seriesJson = auteurJson["serie"]?.AsArray();
+            foreach (JsonNode? serieJson in seriesJson)
+            {
+                string titre = serieJson?["titre"]?.GetValue<string>() ?? "(absent)";
+                if (titre == nomSerie)
+                {
+                    foreach (JsonNode? tomeJson in serieJson["tome"]?.AsArray())
+                    {
+                        int numero = tomeJson["numero"]?.GetValue<int>() ?? 0;
+                        if (numero == tome)
+                        {
+                            tomeJson["langue"] = langue;
+                        }
+                        found = true;
+                    }
+                }
+            }
+        }
+        return(found);
     }
 
-    public bool DeleteManga()
+    public bool DeleteManga(string nomSerie, int tome)
     {
-        return(true);
+        bool found = false;
+        JsonArray auteursJson = _documentJson["auteur"]?.AsArray()
+            ?? throw new InvalidDataException("Tableau d'auteurs absent.");
+        foreach (JsonNode? auteurJson in auteursJson)
+        {
+            JsonArray seriesJson = auteurJson["serie"]?.AsArray();
+            foreach (JsonNode? serieJson in seriesJson)
+            {
+                string titre = serieJson?["titre"]?.GetValue<string>() ?? "(absent)";
+
+                if (titre == nomSerie)
+                {
+                    JsonArray tomesJson = serieJson["tome"]?.AsArray();
+                    foreach (JsonNode? tomeJson in tomesJson)
+                    {
+                        int numero = tomeJson["numero"]?.GetValue<int>() ?? 0;
+                        if (numero == tome)
+                        {
+                            tomesJson.Remove(tomeJson);
+                            break;
+                        }
+                        found = true;
+                    }
+                }
+            }
+        }
+        return(found);
     }
 }

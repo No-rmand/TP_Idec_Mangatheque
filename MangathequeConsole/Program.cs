@@ -48,7 +48,7 @@ while (input != "0")
             System.Console.WriteLine("Quel est sa date de parution ?\nFormat jj.mm.aaaa");
             dateParution = System.Console.ReadLine();
             xml.AddManga(nomSerie, possede, langue, tome, dateParution);
-            json.AddManga();
+            json.AddManga(nomSerie, possede, langue, tome, dateParution);
             break;
         case "3":
             Console.Clear();
@@ -59,7 +59,7 @@ while (input != "0")
             System.Console.WriteLine("Modifier la langue");
             langue = System.Console.ReadLine();         
             xml.UpdateManga(nomSerie, tome, langue);
-            json.UpdateManga();
+            json.UpdateManga(nomSerie, tome, langue);
             break;
         case "4":
             Console.Clear();
@@ -68,14 +68,13 @@ while (input != "0")
             System.Console.WriteLine("Quel est le numéro du tome");
             tome = int.Parse(System.Console.ReadLine());
             xml.DeleteManga(nomSerie, tome);
-            json.DeleteManga();
+            json.DeleteManga(nomSerie, tome);
             break;
         default :
             System.Console.WriteLine("Choix invalide.");
             break;
     }
 }
-
 
 
 
