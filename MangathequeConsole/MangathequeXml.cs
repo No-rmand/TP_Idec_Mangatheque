@@ -1,4 +1,4 @@
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 public class MangathequeXml
 {
@@ -17,7 +17,9 @@ public class MangathequeXml
         {
             string auteur = auteurXml.Attribute("nom")?.Value ?? "(absent)";
             System.Console.WriteLine($"{auteur} XML");
-            foreach (XElement serieXml in auteurXml.Element("series").Elements("serie"))
+            XElement seriesXml = auteurXml.Element("series")
+                ?? throw new InvalidDataException("Element series absent.");
+            foreach (XElement serieXml in seriesXml.Elements("serie"))
             {
                 string titre = serieXml.Attribute("titre")?.Value ?? "(absent)";
                 System.Console.WriteLine($"  -> {titre}");
@@ -38,7 +40,9 @@ public class MangathequeXml
             ?? throw new InvalidDataException("Racine XML absente.");
         foreach (XElement auteurXml in racineXml.Elements("auteur"))
         {
-            foreach (XElement serieXml in auteurXml.Element("series").Elements("serie"))
+            XElement seriesXml = auteurXml.Element("series")
+                ?? throw new InvalidDataException("Element series absent.");
+            foreach (XElement serieXml in seriesXml.Elements("serie"))
             {
                 string titre = serieXml.Attribute("titre")?.Value ?? "(absent)";
                 if (titre == nomSerie)
@@ -67,7 +71,9 @@ public class MangathequeXml
             ?? throw new InvalidDataException("Racine XML absente.");
         foreach (XElement auteurXml in racineXml.Elements("auteur"))
         {
-            foreach (XElement serieXml in auteurXml.Element("series").Elements("serie"))
+            XElement seriesXml = auteurXml.Element("series")
+                ?? throw new InvalidDataException("Element series absent.");
+            foreach (XElement serieXml in seriesXml.Elements("serie"))
             {
                 string titre = serieXml.Attribute("titre")?.Value ?? "(absent)";
                 if (titre == nomSerie)
@@ -94,7 +100,9 @@ public class MangathequeXml
             ?? throw new InvalidDataException("Racine XML absente.");
         foreach (XElement auteurXml in racineXml.Elements("auteur"))
         {
-            foreach (XElement serieXml in auteurXml.Element("series").Elements("serie"))
+            XElement seriesXml = auteurXml.Element("series")
+                ?? throw new InvalidDataException("Element series absent.");
+            foreach (XElement serieXml in seriesXml.Elements("serie"))
             {
                 string titre = serieXml.Attribute("titre")?.Value ?? "(absent)";
                 if (titre == nomSerie)

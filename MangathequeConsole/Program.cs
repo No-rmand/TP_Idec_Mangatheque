@@ -38,19 +38,31 @@ while (input != "0")
             string? dateParution = "";
             int choix = 0;
             System.Console.WriteLine("Entrez le nom de la série");
-            nomSerie = System.Console.ReadLine();
+            nomSerie = System.Console.ReadLine() ?? "";
             System.Console.WriteLine("1. Physique ?\n2. Digital ?");
-            choix = int.Parse(System.Console.ReadLine());
+            if (!int.TryParse(System.Console.ReadLine(), out choix) || (choix != 1 && choix != 2))
+            {
+                System.Console.WriteLine("Choix invalide : tapez 1 ou 2");
+                break;
+            }
             if (choix == 1) {possede = "Physique";} else {possede = "Digital";}
             choix = 0;
             System.Console.WriteLine("1. Français ? \n 2. Anglais ?");
-            choix = int.Parse(System.Console.ReadLine());
+            if (!int.TryParse(System.Console.ReadLine(), out choix) || (choix != 1 && choix != 2))
+            {
+                System.Console.WriteLine("Choix invalide : tapez 1 ou 2");
+                break;
+            }
             if (choix == 1) {langue = "Francais";} else {langue = "Anglais";}
             choix = 0;
             System.Console.WriteLine("Quel est le numéro du tome ?");
-            tome = int.Parse(System.Console.ReadLine());
+            if (!int.TryParse(System.Console.ReadLine(), out tome))
+            {
+                System.Console.WriteLine("Ce n'est pas un nombre");
+                break;
+            }
             System.Console.WriteLine("Quel est sa date de parution ?\nFormat jj.mm.aaaa");
-            dateParution = System.Console.ReadLine();
+            dateParution = System.Console.ReadLine() ?? "";
             foundXml = xml.AddManga(nomSerie, possede, langue, tome, dateParution);
             foundJson = json.AddManga(nomSerie, possede, langue, tome, dateParution);
             if (foundXml == false)
@@ -73,36 +85,52 @@ while (input != "0")
         case "3":
             Console.Clear();
             System.Console.WriteLine("Entrez le nom de la série");
-            nomSerie = System.Console.ReadLine();
+            nomSerie = System.Console.ReadLine() ?? "";
             System.Console.WriteLine("Quel est le numéro du tome");
-            tome = int.Parse(System.Console.ReadLine());
+            if (!int.TryParse(System.Console.ReadLine(), out tome))
+            {
+                System.Console.WriteLine("Ce n'est pas un nombre.");
+                break;
+            }
             System.Console.WriteLine("Modifier la langue");
-            langue = System.Console.ReadLine();         
-            foundXml = xml.UpdateManga(nomSerie, tome, langue);
-            foundJson = json.UpdateManga(nomSerie, tome, langue);
-            if (foundXml == false)
+            langue = System.Console.ReadLine();
+            if(langue == "Anglais" || langue == "Francais" || langue == "Portugais")
             {
-                System.Console.WriteLine("XML Erreur");
+                foundXml = xml.UpdateManga(nomSerie, tome, langue);
+                foundJson = json.UpdateManga(nomSerie, tome, langue);
+                if (foundXml == false)
+                {
+                    System.Console.WriteLine("XML Erreur");
+                }
+                else
+                {
+                    System.Console.WriteLine("XML Enregistré.");
+                }
+                if (foundJson == false)
+                {
+                    System.Console.WriteLine("Json Erreur");
+                }
+                else
+                {
+                    System.Console.WriteLine("Json Enregistré.");
+                }
             }
             else
             {
-                System.Console.WriteLine("XML Enregistré.");
-            }
-            if (foundJson == false)
-            {
-                System.Console.WriteLine("Json Erreur");
-            }
-            else
-            {
-                System.Console.WriteLine("Json Enregistré.");
-            }
+                System.Console.WriteLine("Langue non autorisée");
+            }        
+
             break;
         case "4":
             Console.Clear();
             System.Console.WriteLine("Entrez le nom de la série");
-            nomSerie = System.Console.ReadLine();
+            nomSerie = System.Console.ReadLine() ?? "";
             System.Console.WriteLine("Quel est le numéro du tome");
-            tome = int.Parse(System.Console.ReadLine());
+            if (!int.TryParse(System.Console.ReadLine(), out tome))
+            {
+                System.Console.WriteLine("Ce n'est pas un nombre.");
+                break;
+            }
             foundXml = xml.DeleteManga(nomSerie, tome);
             foundJson = json.DeleteManga(nomSerie, tome);
                         if (foundXml == false)
