@@ -53,6 +53,7 @@ public class MangathequeXml
                             
                     );
                     found = true;
+                    SaveXml();
                 }
             }
         }
@@ -77,6 +78,7 @@ public class MangathequeXml
                         {
                             tomeXml.SetAttributeValue("langue", langue);
                             found = true;
+                            SaveXml();
                         }
                     }
                 }
@@ -103,11 +105,17 @@ public class MangathequeXml
                         {
                             tomeXml.Remove();
                             found = true;
+                            SaveXml();
                         }
                     }
                 }
             }
         }
         return(found);
+    }
+
+    public void SaveXml()
+    {
+        _documentXml.Save("MaMangatheque_modified.xml");
     }
 }

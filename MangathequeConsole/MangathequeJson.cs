@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Nodes;
 
 public class MangathequeJson
@@ -39,6 +40,7 @@ public class MangathequeJson
                         ["dateParution"] = dateParution
                     });
                     found = true;
+                    SaveJson();
                 }
             }
         }
@@ -64,8 +66,9 @@ public class MangathequeJson
                         if (numero == tome)
                         {
                             tomeJson["langue"] = langue;
+                            found = true;
+                            SaveJson();
                         }
-                        found = true;
                     }
                 }
             }
@@ -94,13 +97,25 @@ public class MangathequeJson
                         if (numero == tome)
                         {
                             tomesJson.Remove(tomeJson);
+                            found = true;
+                            SaveJson();
                             break;
                         }
-                        found = true;
                     }
                 }
             }
         }
         return(found);
+    }
+
+    public void SaveJson()
+    {
+        var options = new JsonSerializerOptions
+        {
+            WriteIndented = true
+        };
+
+        string resultJson = _documentJson.ToJsonString(options);
+        File.WriteAllText("MaMangatheque_modified.json", resultJson);
     }
 }

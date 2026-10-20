@@ -15,12 +15,16 @@ System.Console.WriteLine(" _    _                         _   _      __\n|  \\/ 
 System.Console.WriteLine("\n \nBienvenue! \n\nChoissisez une option:");
 
 string? input = "";
+bool foundXml = false;
+bool foundJson = false;
 while (input != "0")
 {
     System.Console.WriteLine("\n\n1. Afficher la mangathèque \n2. Ajouter un manga dans une série existante \n3. Mettre à jour un manga \n4. Supprimer un manga \n\n0. Quitter");
     input = System.Console.ReadLine();
     switch (input)
     {
+        case "0":
+            break;
         case "1":
             Console.Clear();
             xml.ReadAll();
@@ -47,8 +51,24 @@ while (input != "0")
             tome = int.Parse(System.Console.ReadLine());
             System.Console.WriteLine("Quel est sa date de parution ?\nFormat jj.mm.aaaa");
             dateParution = System.Console.ReadLine();
-            xml.AddManga(nomSerie, possede, langue, tome, dateParution);
-            json.AddManga(nomSerie, possede, langue, tome, dateParution);
+            foundXml = xml.AddManga(nomSerie, possede, langue, tome, dateParution);
+            foundJson = json.AddManga(nomSerie, possede, langue, tome, dateParution);
+            if (foundXml == false)
+            {
+                System.Console.WriteLine("XML Erreur");
+            }
+            else
+            {
+                System.Console.WriteLine("XML Enregistré.");
+            }
+            if (foundJson == false)
+            {
+                System.Console.WriteLine("Json Erreur");
+            }
+            else
+            {
+                System.Console.WriteLine("Json Enregistré.");
+            }
             break;
         case "3":
             Console.Clear();
@@ -58,8 +78,24 @@ while (input != "0")
             tome = int.Parse(System.Console.ReadLine());
             System.Console.WriteLine("Modifier la langue");
             langue = System.Console.ReadLine();         
-            xml.UpdateManga(nomSerie, tome, langue);
-            json.UpdateManga(nomSerie, tome, langue);
+            foundXml = xml.UpdateManga(nomSerie, tome, langue);
+            foundJson = json.UpdateManga(nomSerie, tome, langue);
+            if (foundXml == false)
+            {
+                System.Console.WriteLine("XML Erreur");
+            }
+            else
+            {
+                System.Console.WriteLine("XML Enregistré.");
+            }
+            if (foundJson == false)
+            {
+                System.Console.WriteLine("Json Erreur");
+            }
+            else
+            {
+                System.Console.WriteLine("Json Enregistré.");
+            }
             break;
         case "4":
             Console.Clear();
@@ -67,8 +103,24 @@ while (input != "0")
             nomSerie = System.Console.ReadLine();
             System.Console.WriteLine("Quel est le numéro du tome");
             tome = int.Parse(System.Console.ReadLine());
-            xml.DeleteManga(nomSerie, tome);
-            json.DeleteManga(nomSerie, tome);
+            foundXml = xml.DeleteManga(nomSerie, tome);
+            foundJson = json.DeleteManga(nomSerie, tome);
+                        if (foundXml == false)
+            {
+                System.Console.WriteLine("XML Erreur");
+            }
+            else
+            {
+                System.Console.WriteLine("XML Enregistré.");
+            }
+            if (foundJson == false)
+            {
+                System.Console.WriteLine("Json Erreur");
+            }
+            else
+            {
+                System.Console.WriteLine("Json Enregistré.");
+            }
             break;
         default :
             System.Console.WriteLine("Choix invalide.");
