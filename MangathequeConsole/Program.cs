@@ -7,10 +7,12 @@ using System.Text.Json.Nodes;
 using System.Reflection.Metadata;
 using System.Runtime.ConstrainedExecution;
 using System.Numerics;
+using System.Data;
 
 
 MangathequeXml xml;
 MangathequeJson json;
+Console.Clear();
 try
 {
     xml = new MangathequeXml("../MaMangatheque.xml");
@@ -36,9 +38,10 @@ catch (InvalidDataException e)
     System.Console.WriteLine("Donnees invalides : " + e.Message);
     return;
 }
+Console.ForegroundColor = ConsoleColor.Cyan;
 System.Console.WriteLine(" _    _                         _   _      __\n|  \\/  |                       | | | |     \\_\\\n| \\  / | __ _ _ __   __ _  __ _| |_| |__   ___  __ _ _   _  ___\n| |\\/| |/ _` | '_ \\ / _` |/ _` | __| '_ \\ / _ \\/ _` | | | |/ _ \\\n| |  | | (_| | | | | (_| | (_| | |_| | | |  __/ (_| | |_| |  __/\n|_|  |_|\\__,_|_| |_|\\__, |\\__,_|\\__|_| |_|\\___|\\__, |\\__,_|\\___|\n                     __/ |                        | |\n                    |___/                         |_|");
 System.Console.WriteLine("\n \nBienvenue! \n\nChoissisez une option:");
-
+Console.ForegroundColor = ConsoleColor.White;
 string? input = "";
 bool foundXml = false;
 bool foundJson = false;
@@ -54,7 +57,9 @@ while (input != "0")
                 break;
             case "1":
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 xml.ReadAll();
+                Console.ForegroundColor = ConsoleColor.White;
                 break;
             case "2":
                 Console.Clear();
@@ -64,37 +69,38 @@ while (input != "0")
                 int tome = 0;
                 string? dateParution = "";
                 int choix = 0;
-                System.Console.WriteLine("Entrez le nom de la série");
+                Console.ForegroundColor = ConsoleColor.Green;
+                System.Console.WriteLine("\nEntrez le nom de la série\n");
                 nomSerie = System.Console.ReadLine() ?? "";
-                System.Console.WriteLine("1. Physique ?\n2. Digital ?");
+                System.Console.WriteLine("\n1. Physique ?\n2. Digital ?\n");
                 if (!int.TryParse(System.Console.ReadLine(), out choix) || (choix != 1 && choix != 2))
                 {
-                    System.Console.WriteLine("Choix invalide : tapez 1 ou 2");
+                    System.Console.WriteLine("\nChoix invalide : tapez 1 ou 2\n");
                     break;
                 }
                 if (choix == 1) {possede = "Physique";} else {possede = "Digital";}
                 choix = 0;
-                System.Console.WriteLine("1. Français ? \n 2. Anglais ?");
+                System.Console.WriteLine("\n1. Français ? \n2. Anglais ?\n");
                 if (!int.TryParse(System.Console.ReadLine(), out choix) || (choix != 1 && choix != 2))
                 {
-                    System.Console.WriteLine("Choix invalide : tapez 1 ou 2");
+                    System.Console.WriteLine("\nChoix invalide : tapez 1 ou 2\n");
                     break;
                 }
                 if (choix == 1) {langue = "Francais";} else {langue = "Anglais";}
                 choix = 0;
-                System.Console.WriteLine("Quel est le numéro du tome ?");
+                System.Console.WriteLine("\nQuel est le numéro du tome ?\n");
                 if (!int.TryParse(System.Console.ReadLine(), out tome))
                 {
-                    System.Console.WriteLine("Ce n'est pas un nombre");
+                    System.Console.WriteLine("\nCe n'est pas un nombre");
                     break;
                 }
-                System.Console.WriteLine("Quel est sa date de parution ?\nFormat jj.mm.aaaa");
+                System.Console.WriteLine("\nQuel est sa date de parution ?\nFormat jj.mm.aaaa\n");
                 dateParution = System.Console.ReadLine() ?? "";
                 foundXml = xml.AddManga(nomSerie, possede, langue, tome, dateParution);
                 foundJson = json.AddManga(nomSerie, possede, langue, tome, dateParution);
                 if (foundXml == false)
                 {
-                    System.Console.WriteLine("XML Erreur");
+                    System.Console.WriteLine("XML Erreur : serie introuvable");
                 }
                 else
                 {
@@ -102,24 +108,26 @@ while (input != "0")
                 }
                 if (foundJson == false)
                 {
-                    System.Console.WriteLine("Json Erreur");
+                    System.Console.WriteLine("Json Erreur : serie introuvable");
                 }
                 else
                 {
                     System.Console.WriteLine("Json Enregistré.");
                 }
+                Console.ForegroundColor = ConsoleColor.White;
                 break;
             case "3":
                 Console.Clear();
-                System.Console.WriteLine("Entrez le nom de la série");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                System.Console.WriteLine("\nEntrez le nom de la série\n");
                 nomSerie = System.Console.ReadLine() ?? "";
-                System.Console.WriteLine("Quel est le numéro du tome");
+                System.Console.WriteLine("\nQuel est le numéro du tome\n");
                 if (!int.TryParse(System.Console.ReadLine(), out tome))
                 {
                     System.Console.WriteLine("Ce n'est pas un nombre.");
                     break;
                 }
-                System.Console.WriteLine("Modifier la langue");
+                System.Console.WriteLine("\nModifier la langue\n");
                 langue = System.Console.ReadLine();
                 if(langue == "Anglais" || langue == "Francais" || langue == "Portugais")
                 {
@@ -127,15 +135,15 @@ while (input != "0")
                     foundJson = json.UpdateManga(nomSerie, tome, langue);
                     if (foundXml == false)
                     {
-                        System.Console.WriteLine("XML Erreur");
+                        System.Console.WriteLine("XML Erreur : serie introuvable\n");
                     }
                     else
                     {
-                        System.Console.WriteLine("XML Enregistré.");
+                        System.Console.WriteLine("XML Enregistré.\n");
                     }
                     if (foundJson == false)
                     {
-                        System.Console.WriteLine("Json Erreur");
+                        System.Console.WriteLine("Json Erreur : serie introuvable");
                     }
                     else
                     {
@@ -146,23 +154,24 @@ while (input != "0")
                 {
                     System.Console.WriteLine("Langue non autorisée");
                 }        
-
+                Console.ForegroundColor = ConsoleColor.White;
                 break;
             case "4":
                 Console.Clear();
-                System.Console.WriteLine("Entrez le nom de la série");
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                System.Console.WriteLine("\nEntrez le nom de la série\n");
                 nomSerie = System.Console.ReadLine() ?? "";
-                System.Console.WriteLine("Quel est le numéro du tome");
+                System.Console.WriteLine("\nQuel est le numéro du tome\n");
                 if (!int.TryParse(System.Console.ReadLine(), out tome))
                 {
-                    System.Console.WriteLine("Ce n'est pas un nombre.");
+                    System.Console.WriteLine("Ce n'est pas un nombre.\n");
                     break;
                 }
                 foundXml = xml.DeleteManga(nomSerie, tome);
                 foundJson = json.DeleteManga(nomSerie, tome);
                             if (foundXml == false)
                 {
-                    System.Console.WriteLine("XML Erreur");
+                    System.Console.WriteLine("XML Erreur : serie introuvable");
                 }
                 else
                 {
@@ -170,12 +179,13 @@ while (input != "0")
                 }
                 if (foundJson == false)
                 {
-                    System.Console.WriteLine("Json Erreur");
+                    System.Console.WriteLine("Json Erreur : serie introuvable");
                 }
                 else
                 {
                     System.Console.WriteLine("Json Enregistré.");
                 }
+                Console.ForegroundColor = ConsoleColor.White;
                 break;
             default :
                 System.Console.WriteLine("Choix invalide.");

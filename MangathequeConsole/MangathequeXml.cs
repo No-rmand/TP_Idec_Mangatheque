@@ -16,7 +16,7 @@ public class MangathequeXml
         foreach (XElement auteurXml in racineXml.Elements("auteur"))
         {
             string auteur = auteurXml.Attribute("nom")?.Value ?? "(absent)";
-            System.Console.WriteLine($"{auteur} XML");
+            System.Console.WriteLine($"{auteur}");
             XElement seriesXml = auteurXml.Element("series")
                 ?? throw new InvalidDataException("Element series absent.");
             foreach (XElement serieXml in seriesXml.Elements("serie"))
