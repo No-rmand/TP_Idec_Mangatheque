@@ -80,7 +80,9 @@ public class MangathequeXml
                 {
                     foreach (XElement tomeXml in serieXml.Elements("tome"))
                     {
-                        if (int.Parse(tomeXml.Element("numero").Value) == tome)
+                        int numero = int.Parse(tomeXml.Element("numero")?.Value
+                            ?? throw new InvalidDataException("Element numero absent."));
+                        if (numero == tome)
                         {
                             tomeXml.SetAttributeValue("langue", langue);
                             found = true;
@@ -109,7 +111,9 @@ public class MangathequeXml
                 {
                     foreach (XElement tomeXml in serieXml.Elements("tome"))
                     {
-                        if (int.Parse(tomeXml.Element("numero").Value) == tome)
+                        int numero = int.Parse(tomeXml.Element("numero")?.Value
+                            ?? throw new InvalidDataException("Element numero absent."));
+                        if (numero == tome)
                         {
                             tomeXml.Remove();
                             found = true;

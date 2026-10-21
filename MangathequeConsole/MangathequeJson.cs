@@ -25,13 +25,15 @@ public class MangathequeJson
             ?? throw new InvalidDataException("Tableau d'auteurs absent.");
         foreach (JsonNode? auteurJson in auteursJson)
         {
-            JsonArray seriesJson = auteurJson["serie"]?.AsArray();
+            JsonArray seriesJson = auteurJson?["serie"]?.AsArray()
+                ?? throw new InvalidDataException("Tableau serie absent.");
             foreach (JsonNode? serieJson in seriesJson)
             {
                 string titre = serieJson?["titre"]?.GetValue<string>() ?? "(absent)";
                 if (titre == nomSerie)
                 {
-                    JsonArray tomesJson = serieJson["tome"]?.AsArray();
+                    JsonArray tomesJson = serieJson?["tome"]?.AsArray()
+                        ?? throw new InvalidDataException("Tableau tome absent.");
                     tomesJson.Add( new JsonObject
                     {
                         ["possede"] = possede,
@@ -54,16 +56,19 @@ public class MangathequeJson
             ?? throw new InvalidDataException("Tableau d'auteurs absent.");
         foreach (JsonNode? auteurJson in auteursJson)
         {
-            JsonArray seriesJson = auteurJson["serie"]?.AsArray();
+            JsonArray seriesJson = auteurJson?["serie"]?.AsArray()
+                ?? throw new InvalidDataException("Tableau serie absent.");
             foreach (JsonNode? serieJson in seriesJson)
             {
                 string titre = serieJson?["titre"]?.GetValue<string>() ?? "(absent)";
                 if (titre == nomSerie)
                 {
-                    foreach (JsonNode? tomeJson in serieJson["tome"]?.AsArray())
+                    JsonArray tomesJson = serieJson?["tome"]?.AsArray()
+                        ?? throw new InvalidDataException("Tableau tome absent.");
+                    foreach (JsonNode? tomeJson in tomesJson)
                     {
-                        int numero = tomeJson["numero"]?.GetValue<int>() ?? 0;
-                        if (numero == tome)
+                        int numero = tomeJson?["numero"]?.GetValue<int>() ?? 0;
+                        if (numero == tome && tomeJson != null)
                         {
                             tomeJson["langue"] = langue;
                             found = true;
@@ -83,17 +88,19 @@ public class MangathequeJson
             ?? throw new InvalidDataException("Tableau d'auteurs absent.");
         foreach (JsonNode? auteurJson in auteursJson)
         {
-            JsonArray seriesJson = auteurJson["serie"]?.AsArray();
+            JsonArray seriesJson = auteurJson?["serie"]?.AsArray()
+                ?? throw new InvalidDataException("Tableau serie absent.");
             foreach (JsonNode? serieJson in seriesJson)
             {
                 string titre = serieJson?["titre"]?.GetValue<string>() ?? "(absent)";
 
                 if (titre == nomSerie)
                 {
-                    JsonArray tomesJson = serieJson["tome"]?.AsArray();
+                    JsonArray tomesJson = serieJson?["tome"]?.AsArray()
+                        ?? throw new InvalidDataException("Tableau tome absent.");
                     foreach (JsonNode? tomeJson in tomesJson)
                     {
-                        int numero = tomeJson["numero"]?.GetValue<int>() ?? 0;
+                        int numero = tomeJson?["numero"]?.GetValue<int>() ?? 0;
                         if (numero == tome)
                         {
                             tomesJson.Remove(tomeJson);
